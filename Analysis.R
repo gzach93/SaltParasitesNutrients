@@ -231,6 +231,10 @@ AIC(plaque.mod1)
 plot(residuals(plaque.mod, type = 'pearson') ~ plaque.mod$fitted.values)
 abline(h = 0)
 
+plot(residuals(plaque.mod1, type = 'pearson') ~ plaque.mod$fitted.values)
+abline(h = 0)
+
+
 #Model Fits
 plaque.pred <- data.frame(predict(plaque.mod, newdata = data.frame('chloride' = seq(0,1900,by = 100),
                                                                    'sq.chloride' = seq(0,1900,by = 100)^2), 
