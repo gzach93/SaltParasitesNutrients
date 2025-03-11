@@ -7,11 +7,18 @@ library(ggpubr)
 library(ggpubr)
 library(MASS)
 
-#Isa's Data -- FV3 and Nutrients but no chloride
-excretion2023 <- read_excel('~/Dropbox/Documents/Projects/ExcretionRate/Data/Parasite_Pollutants_Ecosystem_Raw_data.xlsx',
-                            sheet = 4)
+#Laod in Data
+#Excretion 2023 Data -- FV3 and Nutrients but no chloride
+excretion2023 <- read.csv('Data/Excretion2023.csv')
 
+#Excretion 2024 Data -- FV3, NaCl, and Nutrients
+excretion2024 <- read.csv('Data/Excretion2024.csv')
 
+#Plaque Assay Data 
+nacl <- read.csv('Data/PlaqueAssay_NaCl.csv')
+
+#2024 Field Data
+field2024 <- read.csv('Data/Field2024_Viral_Chloride.csv')
 
 
 ####################################################
@@ -29,8 +36,6 @@ salt.control24[salt.control24$nacl %in% c("0.5 g/L"),'nacl'] <- 0.5
 salt.control24[salt.control24$nacl %in% c("0.75 g/L"),'nacl'] <- 0.75
 salt.control24[salt.control24$nacl %in% c("1.0 g/L"),'nacl'] <- 1
 salt.control24$nacl <- as.numeric(salt.control24$nacl)
-
-salt
 
 salt.control.mod.SRP <- lm(value ~ nacl, data = salt.control24[salt.control24$nutrient %in% c('SRP'),])
 salt.control.mod.NH4 <- lm(value ~ nacl, data = salt.control24[salt.control24$nutrient %in% c('NH4'),])
